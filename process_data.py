@@ -2,8 +2,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
 
-file_paths = ["pwlds_very_weak.csv", "pwlds_weak.csv", "pwlds_average.csv",
-              "pwlds_strong.csv", "pwlds_very_strong.csv"]
+file_paths = ["PWLDS/pwlds_very_weak.csv", "PWLDS/pwlds_weak.csv", "PWLDS/pwlds_average.csv",
+              "PWLDS/pwlds_strong.csv", "PWLDS/pwlds_very_strong.csv"]
 
 dfs = []
 for i, file in enumerate(file_paths):
