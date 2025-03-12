@@ -30,7 +30,7 @@ with torch.no_grad():
         y_true.extend(targets.cpu().numpy())
         y_pred.extend(predicted.cpu().numpy())
 
-print("Accuracy:", accuracy_score(y_true, y_pred))
+#print("Accuracy:", accuracy_score(y_true, y_pred))
 
 classes = [0, 1, 2, 3, 4]
 cm = confusion_matrix(y_true, y_pred, labels=classes)

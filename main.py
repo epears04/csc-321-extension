@@ -32,11 +32,11 @@ if __name__ == '__main__':
     print("2. The program will take the password and run it through our model")
     print("3. A category will return ranging from 'Very Weak', 'Weak', 'Average', 'Strong', 'Very Strong' signifying how strong your password is")
     print("4. You can test as many passwords as you like")
-    print("5. To exit the program enter 'quite' when ready\n")
+    print("5. To exit the program enter 'q' when ready\n")
 
     while True:
         password = input("Enter Your Password: ")
-        if password.lower() == "quite":
+        if password.lower() == "q":
             print("Thank you for using this AI-Powered Password Evaluator")
             break
         strength = predict_strenght(password)

@@ -4,16 +4,22 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 
 # Load dataset files
-file_paths = ["PWLDS/pwlds_very_weak.csv", "PWLDS/pwlds_weak.csv", "PWLDS/pwlds_average.csv",
+file_paths = ["PWLDS/pwlds_weak.csv", "PWLDS/pwlds_average.csv",
               "PWLDS/pwlds_strong.csv", "PWLDS/pwlds_very_strong.csv"]
 
 dfs = []
 for i, file in enumerate(file_paths):
     df = pd.read_csv(file)
-    df["Strength_Level"] = i
+    df["Strength_Level"] = i + 1 #shift level to account for common passwords
     dfs.append(df)
 
-df = pd.concat(dfs, ignore_index=True)
+#Add common passwords
+common_pw =  pd.read_csv("PWLDS/most_used_pw.txt", names=["Password"], header=None, encoding="utf-8", sep="\t")
+print("HEAD\n", common_pw.head())
+common_pw = common_pw.sample(n=20000, random_state=42)  #assign strength level
+common_pw["Strength_Level"] = 0
+
+df = pd.concat([pd.concat(dfs, ignore_index=True), common_pw], ignore_index=True)
 df = df.sample(frac=1, random_state=42).reset_index(drop=True)
 
 print(df["Strength_Level"].value_counts())
@@ -28,11 +34,14 @@ chars = string.ascii_letters + string.digits + "!@#$%^&*()"
 char_to_num = {char: i + 1 for i, char in enumerate(chars)}
 
 def encode_password(password, max_len=16):
+    if not isinstance(password, str):
+        password = str(password)
     encoded = [char_to_num.get(char, 0) for char in password]
     encoded = encoded[:max_len]  # Truncate if too long
     encoded += [0] * (max_len - len(encoded))  # Pad if too short
     return encoded
 
+df_sampled["Password"] = df_sampled["Password"].astype(str)
 df_sampled["encoded_password"] = df_sampled["Password"].apply(encode_password)
 
 X = np.array(df_sampled["encoded_password"].tolist(), dtype=np.int32)
