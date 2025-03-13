@@ -6,8 +6,9 @@ model = LSTMModel(93, 16, 32, 1, 5)
 model.load_state_dict(torch.load('output/password_model.pth'))
 model.eval()
 
-chars = string.ascii_letters + string.digits + "!@#$%^&*()"
+chars = string.ascii_letters + string.digits + r"!@#$%^&*()/'\:~.<>?{}[]=+_-;|`"
 char_to_num = {char: i + 1 for i, char in enumerate(chars)}
+char_to_num["<UNK>"] = 0 # Use index 0 for unknown characters
 
 def encode_password(password, max_len=16):
     encoded = [char_to_num.get(char, 0) for char in password]
