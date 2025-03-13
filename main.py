@@ -28,11 +28,14 @@ def predict_strenght(password):
 if __name__ == '__main__':
     print("AI-Powered Password Evaluator")
     print("How to Use:")
-    print("1. When prompted please input a password you want to test")
-    print("2. The program will take the password and run it through our model")
-    print("3. A category will return ranging from 'Very Weak', 'Weak', 'Average', 'Strong', 'Very Strong' signifying how strong your password is")
-    print("4. You can test as many passwords as you like")
-    print("5. To exit the program enter 'q' when ready\n")
+    print("1. When prompted please input a password you want to test.")
+    print("2. The program will take the password and run it through our model.")
+    print("3. A category will return ranging from 'Very Weak', 'Weak', 'Average', 'Strong', 'Very Strong' signifying how strong your password is.")
+    print("4. You can test as many passwords as you like.")
+    print("5. To exit the program enter 'q' when ready.")
+    print("Please be aware that this AI is not 100% accurate.")
+    print("Please follow NIST Password Guidelines or a random password generator to ensure the best security possible.\n")
+
 
     while True:
         password = input("Enter Your Password: ")
