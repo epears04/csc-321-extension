@@ -42,9 +42,9 @@ Y = np.array(df_sampled["Strength_Level"], dtype=np.int64)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42, stratify=Y)
 
 # Save data
-np.save("X_train.npy", X_train)
-np.save("X_test.npy", X_test)
-np.save("Y_train.npy", Y_train)
-np.save("Y_test.npy", Y_test)
+np.save("output/X_train.npy", X_train)
+np.save("output/X_test.npy", X_test)
+np.save("output/Y_train.npy", Y_train)
+np.save("output/Y_test.npy", Y_test)
 
 print(f"Training Samples: {len(X_train)}, Test Samples: {len(X_test)}")

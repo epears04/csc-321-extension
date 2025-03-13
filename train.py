@@ -2,15 +2,15 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
-from dataset import PasswordDataset
+from util.dataset import PasswordDataset
 from torch.utils.data import DataLoader
-from model import LSTMModel
+from util.model import LSTMModel
 
 #load data
-X_train = np.load("X_train.npy")
-Y_train = np.load("Y_train.npy")
-X_test = np.load("X_test.npy")
-Y_test = np.load("Y_test.npy")
+X_train = np.load("output/X_train.npy")
+Y_train = np.load("output/Y_train.npy")
+X_test = np.load("output/X_test.npy")
+Y_test = np.load("output/Y_test.npy")
 
 # convert data to tensors
 train_dataset = PasswordDataset(X_train, Y_train)
@@ -40,5 +40,5 @@ for epoch in range(epochs):
 
     print (f"Epoch {epoch + 1}/{epochs}, Loss: {total_loss / len(train_loader):.4f}")
 
-torch.save(model.state_dict(), "password_model.pth")
-print("Training complete. Model saved as 'password_model.pth'")
+torch.save(model.state_dict(), "output/password_model.pth")
+print("Training complete. Model saved as 'output/password_model.pth'")

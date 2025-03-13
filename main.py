@@ -1,9 +1,9 @@
 import torch
 import string
-from model import LSTMModel
+from util.model import LSTMModel
 
 model = LSTMModel(93, 16, 32, 1, 5)
-model.load_state_dict(torch.load('password_model.pth'))
+model.load_state_dict(torch.load('output/password_model.pth'))
 model.eval()
 
 chars = string.ascii_letters + string.digits + "!@#$%^&*()"

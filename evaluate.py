@@ -1,22 +1,21 @@
 import torch
 from torch.utils.data import DataLoader
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, ConfusionMatrixDisplay
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import numpy as np
-from dataset import PasswordDataset
-from model import LSTMModel
-import seaborn as sns
+from util.dataset import PasswordDataset
+from util.model import LSTMModel
 import matplotlib.pyplot as plt
 
 # Load test data
-X_test = np.load("X_test.npy")
-Y_test = np.load("Y_test.npy")
+X_test = np.load("output/X_test.npy")
+Y_test = np.load("output/Y_test.npy")
 
 # Convert to PyTorch dataset
 test_dataset = PasswordDataset(X_test, Y_test)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 
 model = LSTMModel(93, 16, 32, 1, 5)
-model.load_state_dict(torch.load("password_model.pth"))
+model.load_state_dict(torch.load("output/password_model.pth"))
 model.eval()
 
 # Evaluate accuracy
