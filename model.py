@@ -1,11 +1,11 @@
 import torch.nn as nn
 
 class LSTMModel(nn.Module):
-    def __init__(self, size, embed_dim, hidden_dim, layer_dim, output_dim):
+    def __init__(self, char_set_size, embed_dim, hidden_dim, layer_dim, output_dim):
         super(LSTMModel, self).__init__()
         self.hidden_dim = hidden_dim
         self.layer_dim = layer_dim
-        self.embedding = nn.Embedding(size, embed_dim)
+        self.embedding = nn.Embedding(num_embeddings=char_set_size, embedding_dim=embed_dim)
         self.lstm = nn.LSTM(embed_dim, hidden_dim, layer_dim, batch_first=True)
         self.fc = nn.Linear(hidden_dim, output_dim)
 

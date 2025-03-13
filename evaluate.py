@@ -15,7 +15,7 @@ Y_test = np.load("Y_test.npy")
 test_dataset = PasswordDataset(X_test, Y_test)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 
-model = LSTMModel(75, 16, 32, 1, 5)
+model = LSTMModel(93, 16, 32, 1, 5)
 model.load_state_dict(torch.load("password_model.pth"))
 model.eval()
 
@@ -29,8 +29,6 @@ with torch.no_grad():
         _, predicted = torch.max(outputs, 1)
         y_true.extend(targets.cpu().numpy())
         y_pred.extend(predicted.cpu().numpy())
-
-#print("Accuracy:", accuracy_score(y_true, y_pred))
 
 classes = [0, 1, 2, 3, 4]
 cm = confusion_matrix(y_true, y_pred, labels=classes)

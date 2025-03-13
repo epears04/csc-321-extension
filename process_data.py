@@ -23,9 +23,9 @@ df_sampled = df.groupby("Strength_Level", group_keys=False).apply(lambda x: x.sa
 
 print(df_sampled["Strength_Level"].value_counts())
 
-# Encode passwords into numbers
-chars = string.ascii_letters + string.digits + "!@#$%^&*()"
+chars = string.ascii_letters + string.digits + r"!@#$%^&*()/'\:~.<>?{}[]=+_-;|`"
 char_to_num = {char: i + 1 for i, char in enumerate(chars)}
+char_to_num["<UNK>"] = 0 # Use index 0 for unknown characters
 
 def encode_password(password, max_len=16):
     encoded = [char_to_num.get(char, 0) for char in password]

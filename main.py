@@ -2,7 +2,7 @@ import torch
 import string
 from model import LSTMModel
 
-model = LSTMModel(75, 16, 32, 1, 5)
+model = LSTMModel(93, 16, 32, 1, 5)
 model.load_state_dict(torch.load('password_model.pth'))
 model.eval()
 

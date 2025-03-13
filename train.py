@@ -19,7 +19,7 @@ train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=True)
 
 # initialize model, optimizer, and loss function
-model = LSTMModel(75, 16, 32, 1, 5)
+model = LSTMModel(93, 16, 32, 1, 5)
 optimizer = optim.Adam(model.parameters())
 criterion = nn.CrossEntropyLoss()
 
