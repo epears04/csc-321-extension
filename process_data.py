@@ -18,7 +18,7 @@ df = df.sample(frac=1, random_state=42).reset_index(drop=True)
 
 print(df["Strength_Level"].value_counts())
 
-# Fix warning: Select only "Password" column for sampling
+# Get random 20,000 passwords (from each file)
 df_sampled = df.groupby("Strength_Level", group_keys=False).apply(lambda x: x.sample(n=20000, random_state=42)).reset_index(drop=True)
 
 print(df_sampled["Strength_Level"].value_counts())
